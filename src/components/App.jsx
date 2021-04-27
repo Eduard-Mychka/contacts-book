@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
-import Dropdown from './LeftSection/Dropdown'
-import ListGroups from './LeftSection/ListGroup';
-import FooterButtons from './LeftSection/FooterButtons';
+import { Component } from 'react';
+import { DropDown } from './LeftSection/Dropdown'
+import UsersList from './LeftSection/UsersList';
+import { FooterButtons } from './LeftSection/FooterButtons';
 import Search from './LeftSection/Search';
-import AddGroup from './LeftSection/AddGroup';
+import { AddGroup } from './LeftSection/AddGroup';
+import ShowUser from './RightSection/ShowUser'
 
 export default class App extends Component {
 
   state = {
-    active: 'family',
-    options: [
-      {value: 'family', text: 'Group Family'},
-      {value: 'friends', text: 'Group Friends'},
-      {value: 'colleagues', text: 'Group Сolleagues'},
-      {value: 'community', text: 'Group Сommunity'},
-    ]
+    active: 'All Contacts',
+    options: ['All Contacts','Group Family','Group Friends','Group Сommunity','Group Anonim'],
+
+    users: [
+      {id: 1, name: 'Ivan Stepanovich Butko', email: 'ivanbutko@.gmail.com', phone: '+38 063 578 9012', group: 'Community'},
+      {id: 2, name: 'Alexander Gnatko', email: 'gnatko@.gmail.com', phone: '+38 063 434 3234', group: 'Friends'},
+      {id: 3, name: 'Tsar\'s Muzzle Hints', email: 'tsar\'smuzzlehints@.gmail.com', phone: '+38 063 342 7121', group: 'Anonim'},
+    ],
+    activeUser: undefined
   }
 
-  onChange = (value) => {
-    this.setState({active: value})
-  }
+  onUserChange = (user) => this.setState({activeUser: user})
+  onChange = (value) => this.setState({active: value})
+
+  onAddGroup = (groupName) => {
+    this.setState(({ options }) => ({options: [...options, groupName]})
+  )};
 
   render() {
-    const {active, options} = this.state
+    const {active, options, users, activeUser} = this.state;
 
     return (
       <div className="App">
@@ -31,44 +37,26 @@ export default class App extends Component {
             <section className="left_section">
               <Search/>
               <div className="ls_nead_buttons">
-                <div><Dropdown options={options} active={active} onChange={this.onChange}/></div>
-                <div><AddGroup/></div>
+                <DropDown 
+                  options={options} 
+                  active={active} 
+                  onChange={this.onChange}
+                />
+                <AddGroup 
+                  onAddGroup={this.onAddGroup}
+                />
               </div>
-              <ListGroups/>
+              <UsersList 
+                users={users} 
+                activeUserId={activeUser?.id} 
+                onUserChange={this.onUserChange}
+              />
               <FooterButtons/>
             </section>
           </div>
           <div className="col-sm-7 ps-0">
             <section className="right-section">
-              <div className="rs_informer">
-                <h1 className="rs_title">Contacts Book</h1>
-                <div className="rs_interface">
-                  <div className="rs_photo"></div>
-                  <div className="rs_anonym">
-                    <div className="rs_designation">
-                      <button className="rs_designation_icon"><i className="fa fa-pencil-alt"></i></button>
-                      <span className="rs_designation_name">Myshlen Sem Cock</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="rs_contact_info">
-                  <p>
-                    <span><i class="fas fa-envelope"></i></span>
-                    Email: 
-                    <span>nickmychka@gmail.com</span>
-                  </p>
-                  <p>
-                    <span><i class="fas fa-phone"></i></span>
-                    Phone:  
-                    <span>+380 737587463</span>
-                  </p>
-                  <p>
-                    <span><i class="fas fa-users"></i></span>
-                    Group: 
-                    <span>Family</span>
-                  </p>
-                </div>
-              </div>
+              <ShowUser activeUser={activeUser}/>
             </section>
           </div>
         </div> 

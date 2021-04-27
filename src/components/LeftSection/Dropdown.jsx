@@ -1,23 +1,23 @@
-import React from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 
-const DropdownComponent = ({options, active, onChange}) => {
-  const activeItem = options.find(item => item.value === active) || {};
+export const DropDown = ({options, active, onChange}) => {
+  const activeItem = options.find(item => item === active) || {};
 
   return (
     <Dropdown className="dropdown">
-      <Dropdown.Toggle variant="outline-success" id="dropdown-basic">
-        {activeItem.text}
+      <Dropdown.Toggle className="dropdown-toggle-text" variant="outline-success" id="dropdown-basic">
+        {activeItem}
       </Dropdown.Toggle>
-      <Dropdown.Menu className="">
+      <Dropdown.Menu className="dropdown-menu">
         {options.map(item => {
           return (
-            <Dropdown.Item  
-              key={item.value} 
+            <Dropdown.Item 
+              className="dropdown-menu-item"
+              key={item} 
               as="button" 
-              active={item.value === active}
-              onClick={() => onChange(item.value)}>
-              {item.text}
+              active={item === active}
+              onClick={() => onChange(item)}>
+              {item}
             </Dropdown.Item>
           )
           })
@@ -25,6 +25,4 @@ const DropdownComponent = ({options, active, onChange}) => {
       </Dropdown.Menu>
     </Dropdown>
   )
-}
-
-export default DropdownComponent;
+}  

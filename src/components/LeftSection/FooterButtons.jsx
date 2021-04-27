@@ -1,7 +1,6 @@
-import React from 'react'
 import Button from 'react-bootstrap/Button'
 
-export default function FooterButtons() {
+export const FooterButtons = ()  =>{
   return (
     <div className="ls_foot_buttons">
       <Button className="foot_buttons" variant="outline-primary">Edit</Button>
