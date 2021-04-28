@@ -1,9 +1,7 @@
 import { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
 
+import Button from 'react-bootstrap/Button';
+import ModalGroup from './ModalGroup';
 
 export class AddGroup extends Component{
 
@@ -14,17 +12,13 @@ export class AddGroup extends Component{
 
   handleClose = () => this.setState({show:false, groupName: ''});
   handleShow = () => this.setState({show:true});
-
   handleInputChange = (e) => {this.setState({groupName: e.target.value})};
-
   onSubmitText = (e) => {
     e.preventDefault();
     if (this.state.groupName.trim().length === 0) return
     this.props.onAddGroup(this.state.groupName)
     this.setState({groupName: '', show: false})
-    
   }
-
   render() {
     return (
       <>
@@ -36,29 +30,12 @@ export class AddGroup extends Component{
               Add Group
           </Button>
         </div>
-  
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton></Modal.Header>
-          <Modal.Body>
-            <Modal.Title>Please, enter the name of your group!</Modal.Title>
-            <InputGroup>
-              <FormControl 
-                className="modal-input"
-                aria-describedby="basic-addon1" 
-                placeholder="Write the group" 
-                value={this.state.groupName} 
-                onChange={this.handleInputChange}/>
-            </InputGroup>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button className="modal-footer-btn" variant="outline-success" onClick={this.handleClose}>
-              Close
-            </Button>
-            <Button className="modal-footer-btn" variant="outline-success" onClick={this.onSubmitText}>
-              Save
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        <ModalGroup 
+          onSubmitText={this.onSubmitText}
+          handleClose={this.handleClose}
+          handleInputChange={this.handleInputChange}
+          show={this.state.show}
+          groupName={this.state.groupName}/>
       </>
     );
   }
