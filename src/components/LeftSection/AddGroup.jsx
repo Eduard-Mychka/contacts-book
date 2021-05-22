@@ -1,5 +1,4 @@
 import { Component } from 'react';
-
 import Button from 'react-bootstrap/Button';
 import ModalGroup from './ModalGroup';
 
@@ -13,12 +12,12 @@ export class AddGroup extends Component{
   handleClose = () => this.setState({show:false, groupName: ''});
   handleShow = () => this.setState({show:true});
   handleInputChange = (e) => {this.setState({groupName: e.target.value})};
-  onSubmitText = (e) => {
-    e.preventDefault();
+  onSubmitText = () => {
     if (this.state.groupName.trim().length === 0) return
     this.props.onAddGroup(this.state.groupName)
     this.setState({groupName: '', show: false})
   }
+  
   render() {
     return (
       <>
@@ -27,7 +26,7 @@ export class AddGroup extends Component{
             className="add-group-btn" 
             variant="outline-success" 
             onClick={this.handleShow}>
-              Add Group
+            Add Group
           </Button>
         </div>
         <ModalGroup 

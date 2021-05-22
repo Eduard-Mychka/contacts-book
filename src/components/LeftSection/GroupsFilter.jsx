@@ -1,7 +1,8 @@
 import Dropdown from 'react-bootstrap/Dropdown'
 
-export const DropDown = ({options, active, onChange}) => {
-  const activeItem = options.find(item => item === active) || {};
+const DropDown = ({options, activeGroup, onGroupChange}) => {
+  
+  const activeItem = options.find(option => option === activeGroup) || {};
 
   return (
     <Dropdown className="dropdown">
@@ -9,20 +10,21 @@ export const DropDown = ({options, active, onChange}) => {
         {activeItem}
       </Dropdown.Toggle>
       <Dropdown.Menu className="dropdown-menu">
-        {options.map(item => {
+        {options.map(option => {
           return (
             <Dropdown.Item 
               className="dropdown-menu-item"
-              key={item} 
+              key={option} 
               as="button" 
-              active={item === active}
-              onClick={() => onChange(item)}>
-              {item}
+              activeGroup={option === activeGroup}
+              onClick={() => onGroupChange(option)}>
+              {option}
             </Dropdown.Item>
           )
-          })
-        }
+        })}
       </Dropdown.Menu>
     </Dropdown>
   )
 }  
+
+export default DropDown;

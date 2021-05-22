@@ -6,10 +6,14 @@ import Button from 'react-bootstrap/Button';
 
 const ModalGroup = ({handleClose, handleInputChange, onSubmitText, show, groupName}) => {
   return (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton></Modal.Header>
-      <Modal.Body>
-        <Modal.Title>Please, enter the name of your group!</Modal.Title>
+      <Modal 
+        dialogClassName={'modal-dialog-group'}  
+        contentClassName={'modal-content-group'}
+        show={show} 
+        onHide={handleClose}>
+      <Modal.Header className="modal-group-header" closeButton></Modal.Header>
+      <Modal.Body className="modal-group-body"> 
+        <Modal.Title className="modal-group-title">Please, enter the name of your group!</Modal.Title>
         <InputGroup>
           <FormControl 
             className="modal-input"
@@ -19,7 +23,7 @@ const ModalGroup = ({handleClose, handleInputChange, onSubmitText, show, groupNa
             onChange={handleInputChange}/>
         </InputGroup>
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer className="modal-group-footer">
         <Button className="modal-footer-btn" variant="outline-success" onClick={handleClose}>
           Close
         </Button>
