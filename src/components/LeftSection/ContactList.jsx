@@ -1,10 +1,7 @@
-import { Component } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 
-export default class ContactList extends Component {
-  render() {
-    const {contacts, activeContactId, onContactChange} = this.props
-    return (
+const ContactList = ({ contacts, activeContactId, onContactChange }) => {
+  return (
     <div className="ls_contact_list">
       <ListGroup as="ul" variant="flush">
         {contacts.map(contact => {
@@ -20,6 +17,7 @@ export default class ContactList extends Component {
         })}
       </ListGroup>
     </div>
-    )
-  }
+  )
 }
+
+export default ContactList

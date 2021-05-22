@@ -1,7 +1,4 @@
-import React from 'react'
-
-
-export default function ShowContact({activeContact = {}}) {
+export default function ShowContact({ activeContact = {} }) {
   return (
     <div className="rs_informer">
       <h1 className="rs_title">Contacts Book</h1>

@@ -2,7 +2,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 const DropDown = ({options, activeGroup, onGroupChange}) => {
   
-  const activeItem = options.find(option => option === activeGroup) || {};
+  const activeItem = options.find(option => option === activeGroup) || '';
 
   return (
     <Dropdown className="dropdown">
@@ -16,7 +16,7 @@ const DropDown = ({options, activeGroup, onGroupChange}) => {
               className="dropdown-menu-item"
               key={option} 
               as="button" 
-              activeGroup={option === activeGroup}
+              active={option === activeGroup}
               onClick={() => onGroupChange(option)}>
               {option}
             </Dropdown.Item>
