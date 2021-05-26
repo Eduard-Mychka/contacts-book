@@ -9,6 +9,7 @@ const AddContact = ({ groups, onAddContact }) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [image, setImage] = useState(null);
   const [group, setGroup] = useState(groups[0]);
   
   const handleShow = () => setShow(true);
@@ -16,11 +17,21 @@ const AddContact = ({ groups, onAddContact }) => {
   const handleEmail = (e) => setEmail(e.target.value)
   const handlePhone = (e) => setPhone(e.target.value)
   const handleGroup = (e) => setGroup(e.target.value)
+  const handleImage = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImage(reader.result)
+      }
+    }
+    reader.readAsDataURL(e.target.files[0])
+  }
   const handleClose = () => {
     setShow(false)
     setFullName('')
     setEmail('')
     setPhone('')
+    setImage(null)
     setGroup(groups[0])
   } 
 
@@ -30,6 +41,7 @@ const AddContact = ({ groups, onAddContact }) => {
       email,
       phone,
       group,
+      image,
       id: id++,
     }
     
@@ -89,6 +101,16 @@ const AddContact = ({ groups, onAddContact }) => {
               placeholder="+380" 
               onChange={handlePhone}
               value={phone}/>
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="image"><span><i className="fas fa-images"></i></span> Image:</label>
+            <input 
+              type="file" 
+              name="image" 
+              className="form-control"  
+              onChange={handleImage}
+            />
           </div>
 
           <div className="">

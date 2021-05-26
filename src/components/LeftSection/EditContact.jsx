@@ -8,6 +8,7 @@ const EditContact = ({ activeContact, onUpdateContact, groups }) => {
   const [email, setEmail] = useState(activeContact.email)
   const [phone, setPhone] = useState(activeContact.phone)
   const [group, setGroup] = useState(activeContact.group)
+  const [image, setImage] = useState(activeContact.image);
   const [id, setId] = useState(activeContact.id)
 
   const handleClose = () => setShow(false)
@@ -16,12 +17,22 @@ const EditContact = ({ activeContact, onUpdateContact, groups }) => {
   const handleEmail = (e) => setEmail(e.target.value)
   const handlePhone = (e) => setPhone(e.target.value)
   const handleGroup = (e) => setGroup(e.target.value)
+  const handleImage = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImage(reader.result)
+      }
+    }
+    reader.readAsDataURL(e.target.files[0])
+  }
   const onContactUpdate = () => {
     const update = {
       name: fullName,
       email,
       phone,
       group,
+      image,
       id,
     }
     onUpdateContact(update);
@@ -33,6 +44,7 @@ const EditContact = ({ activeContact, onUpdateContact, groups }) => {
     setEmail(activeContact.email)
     setPhone(activeContact.phone)
     setGroup(activeContact.group)
+    setImage(activeContact.image)
     setId(activeContact.id)
 
   }, [activeContact]);
@@ -83,6 +95,16 @@ const EditContact = ({ activeContact, onUpdateContact, groups }) => {
               placeholder="+380" 
               onChange={handlePhone}
               value={phone}/>
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="image"><span><i className="fas fa-images"></i></span> Image:</label>
+            <input 
+              type="file" 
+              name="image" 
+              className="form-control"  
+              onChange={handleImage}
+            />
           </div>
 
           <div className="">

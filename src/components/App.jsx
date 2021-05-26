@@ -7,16 +7,19 @@ import AddGroup from './LeftSection/AddGroup';
 import ShowContact from './RightSection/ShowContact'
 import AddContact from './LeftSection/AddContact';
 import RemoveContact from './LeftSection/RemoveContact';
+import photo3 from '../assets/images/vitaliy.jpg'
+import photo2 from '../assets/images/butko.jpg'
+import photo from '../assets/images/gnatko.jpg'
 
 const App = () => {
-  const [groups, setGroups] = useState(['All Group','Group Family','Group Friends','Group Сommunity','Group Anonim'])
+  const [groups, setGroups] = useState(['All Group','Group Family','Group Friends','Group Society','Group Anonim'])
   const [activeGroup, setActiveGroup] = useState('All Group')
   const [search, setSearch] = useState('')
   const [activeContact, setActiveContact] = useState(undefined)
   const [contacts, setContacts] = useState([
-    {id: 1, name: 'Ivan Stepanovich Butko', email: 'ivanbutko@.gmail.com', phone: '+38 063 578 9012', group: 'Community'},
-    {id: 2, name: 'Alexander Gnatko', email: 'gnatko@.gmail.com', phone: '+38 063 434 3234', group: 'Friends'},
-    {id: 3, name: 'Tsar\'s Muzzle Hints', email: 'tsar\'smuzzlehints@.gmail.com', phone: '+38 063 342 7121', group: 'Anonim'},
+    {id: 1, name: 'Ivan Stepanovich Butko', email: 'ivanbutko@.gmail.com', phone: '+38 063 578 9012', group: 'Community', image: photo2},
+    {id: 2, name: 'Alexander Gnatko', email: 'gnatko@.gmail.com', phone: '+38 063 434 3234', group: 'Friends',  image: photo},
+    {id: 3, name: 'Klitschko Vitaliy Volodymyrovych', email: 'vitaliyKlitschko@.gmail.com', phone: '+38 063 342 7121', group: 'Society', image: photo3},
   ])
   
   const onSearchChange = (value) => setSearch(value)

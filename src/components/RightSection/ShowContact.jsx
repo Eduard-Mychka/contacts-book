@@ -3,7 +3,7 @@ export default function ShowContact({ activeContact = {} }) {
     <div className="rs_informer">
       <h1 className="rs_title">Contacts Book</h1>
       <div className="rs_interface">
-        <div className="rs_photo"></div>
+        <div className="rs_photo"><img src={activeContact.image} alt="logo" /></div>
           <div className="rs_designation">
             <button className="rs_designation_icon"><i className="fa fa-pencil-alt"></i></button>
             <span className="rs_designation_name">{activeContact.name}</span>
