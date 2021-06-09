@@ -27,14 +27,16 @@ const RemoveContact = ({ onDeleted, activeContact }) => {
         show={show} 
         onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Remove Contact</Modal.Title>
+          <Modal.Title>Remove Contact ?</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure that you are wanted to delete {activeContact.name}?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+        <Modal.Body>
+          Do you want to delete <span className="remove-name">{activeContact.name}</span> contact ?
+        </Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center">
+          <Button variant="outline-secondary" className="fw-bold" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={onRemove}>
+          <Button variant="outline-danger" className="fw-bold" onClick={onRemove}>
             Confirm
           </Button>
         </Modal.Footer>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal';
 
+
 let id = 4
 
 const AddContact = ({ groups, onAddContact }) => {
@@ -69,7 +70,7 @@ const AddContact = ({ groups, onAddContact }) => {
         show={show} 
         onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Contact</Modal.Title>
+          <Modal.Title className="fw-bold">New Contact</Modal.Title>
         </Modal.Header>
         <Modal.Body >
           <div className="mb-3">

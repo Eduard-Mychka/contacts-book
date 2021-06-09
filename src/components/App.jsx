@@ -32,7 +32,8 @@ const App = () => {
     setActiveContact(undefined)
   };
   const onUpdateContact = (update) => {
-    setContacts(contacts.map(contact => update.id === contact.id ? update : contact), update)
+    setContacts(contacts.map(contact => update.id === contact.id ? update : contact))
+    setActiveContact(update)
   }
   
   const filterContacts = contacts.filter(contact => {
