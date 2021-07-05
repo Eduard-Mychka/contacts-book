@@ -1,12 +1,14 @@
-import React from 'react'
+import photo from '../../assets/images/02.gif'
 
-
-export default function ShowContact({activeContact = {}}) {
+export default function ShowContact({ activeContact = {} }) {
   return (
     <div className="rs_informer">
       <h1 className="rs_title">Contacts Book</h1>
       <div className="rs_interface">
-        <div className="rs_photo"></div>
+        <div className="rs_photo">{activeContact.image 
+          ? <img src={activeContact.image} alt="logo"/> 
+          : <img src={photo} alt="logo" />}
+        </div>
           <div className="rs_designation">
             <button className="rs_designation_icon"><i className="fa fa-pencil-alt"></i></button>
             <span className="rs_designation_name">{activeContact.name}</span>

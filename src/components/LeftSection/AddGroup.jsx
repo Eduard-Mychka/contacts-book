@@ -1,42 +1,43 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import ModalGroup from './ModalGroup';
 
-export class AddGroup extends Component{
+const AddGroup = ({ onAddGroup }) => {
+  const [show, setShow] = useState(false);
+  const [groupName, setGroupName] = useState('');
 
-  state = { 
-    show: false, 
-    groupName: '' 
+  const handleShow = () => setShow(true);
+  const handleInputChange = (e) => setGroupName(e.target.value);
+  const handleClose = () => {
+    setShow(false)
+    setGroupName('')
   }
-
-  handleClose = () => this.setState({show:false, groupName: ''});
-  handleShow = () => this.setState({show:true});
-  handleInputChange = (e) => {this.setState({groupName: e.target.value})};
-  onSubmitText = () => {
-    if (this.state.groupName.trim().length === 0) return
-    this.props.onAddGroup(this.state.groupName)
-    this.setState({groupName: '', show: false})
+  const onSubmitText = () => {
+    if (groupName.trim().length === 0) return
+    onAddGroup(groupName)
+    setShow(false)
+    setGroupName('')
   }
   
-  render() {
     return (
       <>
         <div className="add-group">
           <Button 
             className="add-group-btn" 
             variant="outline-success" 
-            onClick={this.handleShow}>
+            onClick={handleShow}>
             Add Group
           </Button>
         </div>
         <ModalGroup 
-          onSubmitText={this.onSubmitText}
-          handleClose={this.handleClose}
-          handleInputChange={this.handleInputChange}
-          show={this.state.show}
-          groupName={this.state.groupName}/>
+          onSubmitText={onSubmitText}
+          handleClose={handleClose}
+          handleInputChange={handleInputChange}
+          show={show}
+          groupName={groupName}/>
       </>
     );
-  }
+  
 }
 
+export default AddGroup;
