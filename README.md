@@ -22,4 +22,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 > Open [Live demo](https://eduard-mychka.github.io/contacts-book/)
 
 ![cover for app](https://github.com/Eduard-Mychka/contacts-book/blob/main/ContactsBook.png "Cover of simple layout")
-
+![cover for app](https://github.com/Eduard-Mychka/contacts-book/blob/main/ContactsBook2.png "Cover of simple layout")
