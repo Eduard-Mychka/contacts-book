@@ -1,6 +1,6 @@
 # Contacts Book
 
-This app uses: React / JS / HTML5 / CSS3 / Bootstrap / LocalStorage
+This app uses: React / JS / HTML5 / CSS3 / SCSS / Bootstrap / LocalStorage
 
 ## Getting started
 
