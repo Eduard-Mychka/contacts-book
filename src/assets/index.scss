@@ -75,8 +75,6 @@ body {
       border: none;
       font-family: 'Poppins', sans-serif; 
       
-      
-      
       .dropdown {
         @extend %box-shadow;
 
@@ -141,9 +139,14 @@ body {
       .list-item {
         background-color: transparent;
         cursor: pointer;
-        color: #4d752c
+        color: #4d752c;
+        text-transform: capitalize;
       }
     };
+
+    .ls-section-fullName {
+      text-transform: capitalize;
+    }
 
     .list-group-item.active {
       border-bottom: 2px solid #929b15;
@@ -205,6 +208,11 @@ body {
         }
       }
 
+      .modal-photo {
+        width: 320px;
+        height: 400px;
+      }
+
       .rs_designation{
         margin-top: 20px;
         font-size: 23px;
@@ -219,8 +227,9 @@ body {
           }
         }
         .rs_designation_name {
-          margin-left: 10px;
           color: #4e681f;
+          font-weight: 600;
+          text-transform: capitalize;
         }
       }
     }

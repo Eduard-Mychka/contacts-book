@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal';
+import { v4 as uuidv4 } from 'uuid';
 
-
-let id = 4
-
-const AddContact = ({ groups, onAddContact }) => {
+const AddContact = ({ groups, onAddContact, contacts, setContacts }) => {
   const [show, setShow] = useState(false);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -27,6 +25,17 @@ const AddContact = ({ groups, onAddContact }) => {
     }
     reader.readAsDataURL(e.target.files[0])
   }
+
+  useEffect(() => {
+    const raw = localStorage.getItem('contacts') || []
+    setContacts(JSON.parse(raw))
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts))
+    
+  }, [contacts]);
+
   const handleClose = () => {
     setShow(false)
     setFullName('')
@@ -43,7 +52,7 @@ const AddContact = ({ groups, onAddContact }) => {
       phone,
       group,
       image,
-      id: id++,
+      id: uuidv4(),
     }
     
     if (fullName.trim().length === 0) return
@@ -77,7 +86,7 @@ const AddContact = ({ groups, onAddContact }) => {
             <label><span><i className="fa fa-pencil-alt"></i></span> Full Name:</label>
             <input 
               type="text" 
-              className="form-control"  
+              className="form-control ls-section-fullName"  
               placeholder="Full Name" 
               onChange={handleFullName} 
               value={fullName}/>

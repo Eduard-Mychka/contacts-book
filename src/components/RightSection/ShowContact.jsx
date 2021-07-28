@@ -1,18 +1,36 @@
+import { useState } from 'react';
 import photo from '../../assets/images/02.gif'
+import PropTypes from 'prop-types';
+import Modal from 'react-bootstrap/Modal';
 
-export default function ShowContact({ activeContact = {} }) {
+const ShowContact = ({ activeContact = {} }) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div className="rs_informer">
       <h1 className="rs_title">Contacts Book</h1>
       <div className="rs_interface">
-        <div className="rs_photo">{activeContact.image 
+        <div 
+          className="rs_photo" 
+          onClick={handleShow}>{activeContact.image 
           ? <img src={activeContact.image} alt="logo"/> 
-          : <img src={photo} alt="logo" />}
+          : <img src={photo} alt="logo"/>}
         </div>
-          <div className="rs_designation">
-            <button className="rs_designation_icon"><i className="fa fa-pencil-alt"></i></button>
-            <span className="rs_designation_name">{activeContact.name}</span>
-          </div>
+
+      <Modal 
+        show={show} 
+        onHide={handleClose}  
+        size="md"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered>
+        <Modal.Body contentClassName="p-0"><img contentClassName="modal-photo" src={activeContact.image} alt="logo"/></Modal.Body>
+      </Modal>
+        <div className="rs_designation">
+          {/* <button className="rs_designation_icon"><i className="fa fa-pencil-alt"></i></button> */}
+          <span className="rs_designation_name">{activeContact.name}</span>
+        </div>
       </div>
     <div className="rs_contact_info">
       <p>
@@ -34,3 +52,14 @@ export default function ShowContact({ activeContact = {} }) {
   </div>
   )
 }
+
+ShowContact.propTypes = {
+  activeContact:  PropTypes.shape({
+    phone: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    group: PropTypes.string.isRequired
+  })
+}
+
+export default ShowContact;
