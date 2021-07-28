@@ -19,6 +19,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Live demo
 
-> Open [Live demo]https://eduard-mychka.github.io/contacts-book/)
+> Open [Live demo](https://eduard-mychka.github.io/contacts-book/)
 
 ![cover for app](https://github.com/Ihor-Onyshchuk/chuck-jokes/blob/master/preview.jpg 'preview')
