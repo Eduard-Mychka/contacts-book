@@ -20,12 +20,16 @@ const ShowContact = ({ activeContact = {} }) => {
         </div>
 
       <Modal 
+        dialogClassName={'modal-dialog'}
+        contentClassName={'modal-content'}
         show={show} 
         onHide={handleClose}  
         size="md"
         aria-labelledby="contained-modal-title-vcenter"
         centered>
-        <Modal.Body contentClassName="p-0"><img contentClassName="modal-photo" src={activeContact.image} alt="logo"/></Modal.Body>
+        <Modal.Body className="modal-body">
+          <img src={activeContact.image} alt="logo"/>
+        </Modal.Body>
       </Modal>
         <div className="rs_designation">
           {/* <button className="rs_designation_icon"><i className="fa fa-pencil-alt"></i></button> */}

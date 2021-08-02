@@ -197,6 +197,7 @@ body {
         width: 130px;
         height: 150px;
         float: left;
+        cursor: pointer;
         margin: 0 20px 30px 30px;
         border: 4px solid #d3dcd3;
         box-shadow: 0 0 10px black;
@@ -206,11 +207,6 @@ body {
           width: 100%;
           height: 100%;
         }
-      }
-
-      .modal-photo {
-        width: 320px;
-        height: 400px;
       }
 
       .rs_designation{
@@ -258,4 +254,20 @@ body {
     }     
   };
 };
+
+.modal-dialog {
+  .modal-content {
+    width: 500px;
+    height: 500px;
+  }
+  .modal-body {
+    border: none;
+    padding: 10px;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
 

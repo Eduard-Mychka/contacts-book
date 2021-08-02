@@ -12,7 +12,7 @@ import photo2 from '../assets/images/butko.jpg'
 import photo from '../assets/images/gnatko.jpg'
 
 const App = () => {
-  const [groups, setGroups] = useState(['All Group'])
+  const [groups, setGroups] = useState(['All Group', 'Community', 'Friends', 'Society'])
   const [activeGroup, setActiveGroup] = useState('All Group')
   const [search, setSearch] = useState('')
   const [activeContact, setActiveContact] = useState(undefined)
@@ -27,17 +27,13 @@ const App = () => {
     setActiveGroup(option);    
   } 
 
-  useEffect(() => {
-    setGroups(contacts.map(contact => contact.group))
-  }, [])
 
   useEffect(() => {
     const raw = localStorage.getItem('contacts') || []
     const contacts = JSON.parse(raw)
     
-    const filteredContacts = contacts.filter(contact => contact.group === activeGroup)
-    setContacts(filteredContacts)
-  }, [activeGroup])
+    setContacts(contacts)
+  }, [])
 
   const onContactChange = (contact) => setActiveContact(contact)
   const onAddGroup = (groupName) => setGroups([...groups, groupName]);
@@ -50,8 +46,13 @@ const App = () => {
     setContacts(contacts.map(contact => update.id === contact.id ? update : contact))
     setActiveContact(update)
   }
+
+  let filtredByGroup = contacts
+  if (activeGroup !== 'All Group') {
+    filtredByGroup = filtredByGroup.filter(contact => contact.group === activeGroup)
+  }
   
-  const filterContacts = contacts.filter(contact => {
+  const filterContacts = filtredByGroup.filter(contact => {
     return contact.name.toLowerCase().includes(search.toLowerCase())});
 
   return (
